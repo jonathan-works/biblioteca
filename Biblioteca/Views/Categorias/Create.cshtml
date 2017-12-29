@@ -1,0 +1,33 @@
+﻿@model Biblioteca.Models.Categoria
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cadastrar nova Categoria</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row">
+        <div class="row">
+            <div class="input-field col s8">
+                <i class="material-icons prefix">library_books</i>
+                @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "library_books" } })
+                @Html.ValidationMessageFor(model => model.nome, "", new { @class = "text-danger" })
+                @Html.LabelFor(model => model.nome, htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group center-align">
+        <button class="btn waves-effect waves-light" type="submit" name="action">
+            Criar
+            <i class="material-icons right">send</i>
+        </button>
+    </div>
+}

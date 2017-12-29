@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Biblioteca Impacta</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    @Styles.Render("~/Content/css")
+
+</head>
+<body class="blue lighten-4">
+
+    <div class="navbar-fixed">
+        <nav>
+            <div class="brand-logo center">
+                <ul>
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Livros", "Index", "Livros")</li>
+                    <li>@Html.ActionLink("Autores", "Index", "Autores")</li>
+                    <li>@Html.ActionLink("Categorias", "Index", "Categorias")</li>
+                    <li>@Html.ActionLink("Clientes", "Index", "Clientes")</li>
+                    <li>@Html.ActionLink("Emprestimos", "Index", "Emprestimos")</li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    @Scripts.Render("~/bundles/bootstrap")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.extend($.fn.pickadate.defaults, {
+                monthsFull: ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'],
+                monthsShort: ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'],
+                weekdaysFull: ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'],
+                weekdaysShort: ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sab'],
+                today: 'hoje',
+                clear: 'limpar',
+                close: 'fechar',
+                format: 'dddd, d !de mmmm !de yyyy',
+                formatSubmit: 'yyyy/mm/dd'
+            });
+
+            $('select').material_select();
+            $('.modal').modal();
+
+            $('.data').pickadate({ format: 'dd/mm/yyyy' });                 
+        });
+    </script>
+
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

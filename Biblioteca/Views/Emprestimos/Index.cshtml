@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col s5 m5 l5 offset-l1">
+        <div class="card  light-blue darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">Cadastrar um Emprestimo de Livro</span>
+                <p>
+                    Cadastre um novo emprestimo de livro.
+                </p>
+            </div>
+            <div class="card-action">
+                @Html.ActionLink("Cadastrar", "Create")
+            </div>
+        </div>
+    </div>
+    <div class="col s5 m5 l5">
+        <div class="card  light-blue darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">Emprestimos de Livros</span>
+                <p>
+                    Visualize todos os Emprestimos de Livros Ativos.
+                </p>
+            </div>
+            <div class="card-action">
+                @Html.ActionLink("Listar", "Details")
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s5 m5 l5 offset-l1">
+        <div class="card  light-blue darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">Devolução de um livro</span>
+                <p>
+                    Cadastre a devolução de um livro.
+                </p>
+            </div>
+            <div class="card-action">
+                @Html.ActionLink("Cadastrar", "Details")
+            </div>
+        </div>
+    </div>
+    <div class="col s5 m5 l5">
+        <div class="card  light-blue darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">Historico de Emprestimos de Livros</span>
+                <p>
+                    Visualize todos os Emprestimos de Livros.
+                </p>
+            </div>
+            <div class="card-action">
+                @Html.ActionLink("Listar", "History")
+            </div>
+        </div>
+    </div>
+</div>
+

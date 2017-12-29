@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Biblioteca.Models.Emprestimo>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Lista de Emprestimos</h2>
+<p>
+    @Html.ActionLink("Cadastrar Emprestimo", "Create", null, new { @class = "waves-effect waves-light btn" })
+</p>
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <table class="responsive-table striped bordered">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.cliente.nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.livro.nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dataAluguel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dataPrevistaDevolucao)
+            </th>           
+            <th>Editar</th>
+            
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cliente.nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.livro.nome)
+                </td>
+                <td>
+                   @item.dataAluguel.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @if (DateTime.Compare(item.dataPrevistaDevolucao, DateTime.Now) < 0)
+                    {
+                        <div class="card-panel red accent-3">@item.dataPrevistaDevolucao.ToString("dd/MM/yyyy")</div>
+                    }
+                    else {
+                    <div class="card-panel blue accent-3">@item.dataPrevistaDevolucao.ToString("dd/MM/yyyy")</div>
+                    }
+                   
+                </td>
+                <td>
+                    <a class="btn-floating btn-large waves-effect waves-light red" data-id="0" href="@Url.Action("Edit", "Emprestimos", new {id=item.id})"><i class="material-icons">mode_edit</i></a>
+                </td>
+               
+            </tr>
+        }
+    </table>
+}
+

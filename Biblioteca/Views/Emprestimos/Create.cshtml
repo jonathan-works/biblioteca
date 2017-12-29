@@ -1,0 +1,63 @@
+﻿@model Biblioteca.Models.Emprestimo
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <h4> Cadastrar um novo emprestimo de livro</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row">
+        <div class="row">
+            <div class="input-field col s3">
+                <i class="material-icons prefix">view_list</i>
+                @Html.DropDownListFor(model => model.clienteId, new SelectList(ViewBag.Clientes, "Value", "Text"), "Selecione um Cliente")
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s3">
+                <i class="material-icons prefix">view_list</i>
+                @Html.DropDownListFor(model => model.livroId, new SelectList(ViewBag.Livros, "Value", "Text"), "Selecione um Livro")
+            </div>
+        </div>
+        @{ Html.EnableClientValidation(false); }
+        <div class="row">
+            <div class="input-field col s4">
+                <i class="material-icons prefix">alarm_on</i>
+                @Html.EditorFor(model => model.dataAluguel, new { htmlAttributes = new { @class = "alarm_on data"} })
+                @Html.ValidationMessageFor(model => model.dataAluguel, "", new { @class = "text-danger" })
+            </div>
+            <div class="input-field col s4">
+                <i class="material-icons prefix">alarm_off</i>
+                @Html.EditorFor(model => model.dataPrevistaDevolucao, new { htmlAttributes = new { @class = "alarm_off data" } })
+                @Html.ValidationMessageFor(model => model.dataPrevistaDevolucao, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @{ Html.EnableClientValidation(true); }
+    </div>
+
+    <div class="row">
+        <div class="form-group center-align">
+            <button id="criar" class="btn waves-effect waves-light" type="submit" name="action">
+                Criar
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
+    </div>
+
+
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

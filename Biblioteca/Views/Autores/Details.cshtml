@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Biblioteca.Models.Autor>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de Autores</h2>
+<p>
+    @Html.ActionLink("Cadastrar autor", "Create", null, new { @class = "waves-effect waves-light btn" })
+</p>
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    <table class="responsive-table striped bordered">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.nome)
+            </th>         
+            <th>Editar</th>
+            <th>Excluir</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nome)
+                </td>              
+                <td>
+                    <a class="btn-floating btn-large waves-effect waves-light red" data-id="0" href="@Url.Action("Edit", "Autores", new {id=item.id})"><i class="material-icons">mode_edit</i></a>
+                </td>
+                <td>
+                    <a id="excluirAutor" class="btn-floating btn-large waves-effect waves-light red" href="#modal1" data-id="@item.id"><i class="material-icons">delete</i></a>
+                </td>
+            </tr>
+        }
+    </table>
+}
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4>Você deseja excluir este Autor?</h4>
+        <p>Ao clicar no botão Confirmar, você não poderá reverter a situação.</p>
+    </div>
+    <div class="modal-footer">
+        @Html.AntiForgeryToken()
+        <button id="btnConfirmarExclusao" type="button" class="modal-action modal-close waves-effect waves-green btn-flat">Confirmar</button>
+    </div>
+</div>
+<script type="text/javascript">
+    var autorId;
+    $('#excluirAutor').click(function (e) {
+        autorId = $(this).attr("data-id");    
+    });
+    $('#btnConfirmarExclusao').click(function () {
+        var form = $('#__AjaxAntiForgeryForm');
+        var token = $('input[name="__RequestVerificationToken"]', form).val();
+        $.ajax({
+            url: 'Delete',
+            type: 'post',
+            data: {
+                __RequestVerificationToken: token,
+                id: autorId
+            },
+            success: function (data) {
+                return window.location.reload();
+            }
+        });
+
+    });
+</script>

@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col s6 m4 l4 offset-l2">
+        <div class="card  light-blue darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">Cadastrar Autor</span>
+                <p>
+                    Cadastre um novo Autor.
+                </p>
+            </div>
+            <div class="card-action">
+                @Html.ActionLink("Cadastrar", "Create")
+            </div>
+        </div>
+    </div>
+    <div class="col s6 m4 l4">
+        <div class="card  light-blue darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">Listar Autores</span>
+                <p>
+                    Visualize todos os autores cadastrados.
+                </p>
+            </div>
+            <div class="card-action">
+                @Html.ActionLink("Listar", "Details")
+            </div>
+        </div>
+    </div>
+</div>
+

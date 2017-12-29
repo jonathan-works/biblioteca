@@ -1,0 +1,77 @@
+﻿@model Biblioteca.Models.Livro
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Alterar Cadastro do  Livro</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+
+        <div class="row">
+            <div class="row">
+                <div class="input-field col s8">
+                    <i class="material-icons prefix">library_books</i>
+                    @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "library_books" } })
+                    @Html.ValidationMessageFor(model => model.nome, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.nome, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s8">
+                    <i class="material-icons prefix">mode_edit</i>
+                    @Html.EditorFor(model => model.descricao, new { htmlAttributes = new { @class = "mode_edit" } })
+                    @Html.ValidationMessageFor(model => model.descricao, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.descricao)
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s8">
+                    <i class="material-icons prefix">toc</i>
+                    @Html.EditorFor(model => model.totalPaginas, new { htmlAttributes = new { @class = "toc" } })
+                    @Html.ValidationMessageFor(model => model.totalPaginas, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.totalPaginas, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s8">
+                    <i class="material-icons prefix">library_add</i>
+                    @Html.EditorFor(model => model.quantidade, new { htmlAttributes = new { @class = "library_add" } })
+                    @Html.ValidationMessageFor(model => model.quantidade, "", new { @class = "text-danger" })
+                    @Html.LabelFor(model => model.quantidade, htmlAttributes: new { @class = "control-label col-md-2" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s3">
+                    <i class="material-icons prefix">view_list</i>
+                    @Html.DropDownListFor(model => model.autorId, new SelectList(ViewBag.Autores, "Value", "Text"), "Selecione um Autor")
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s3">
+                    <i class="material-icons prefix">view_list</i>
+                    @Html.DropDownListFor(model => model.categoriaId, new SelectList(ViewBag.Categorias, "Value", "Text"), "Selecione uma Categoria")
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group center-align">
+            <button class="btn waves-effect waves-light" type="submit" name="action">
+                Salvar
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

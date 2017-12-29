@@ -1,0 +1,44 @@
+﻿@model Biblioteca.Models.Emprestimo
+
+<div>
+    <h4>Resumo devolução</h4>
+    <hr />
+    @using (Html.BeginForm())
+    {
+        <div class="row">
+            <div class="row">
+                <div class="input-field col s4">
+                    @Html.DisplayNameFor(model => model.dataAluguel) :
+                </div>
+                <div class="input-field col s4">
+                    @Html.DisplayFor(model => model.dataAluguel)
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s4">
+                    @Html.DisplayNameFor(model => model.dataPrevistaDevolucao) :
+                </div>
+                <div class="input-field col s4">
+                    @Html.DisplayFor(model => model.dataPrevistaDevolucao)
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s4">
+                    @Html.DisplayNameFor(model => model.dataDevolucao) :
+                </div>
+                <div class="input-field col s4">
+                    @Html.DisplayFor(model => model.dataDevolucao)
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s4">
+                    @Html.DisplayNameFor(model => model.valorPago)  :
+                </div>
+                <div class="input-field col s4">
+                    @Html.DisplayFor(model => model.valorPago)
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
